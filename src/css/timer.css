@@ -1,0 +1,76 @@
+/* Загальний стиль для контейнера */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 600px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.main-title {
+  margin-bottom: 20px;
+}
+.datetime-picker-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 8px;
+}
+#datetime-picker {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 32px;
+  width: 280px;
+}
+
+button[data-start] {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #4e75ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[data-start]:hover {
+  background-color: #6c8cff;
+}
+button[data-start]:disabled {
+  background-color: #ccc;
+  color: #666;
+}
+
+.timer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.value {
+  font-size: 36px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.label {
+  text-transform: uppercase;
+
+  color: #666;
+}
