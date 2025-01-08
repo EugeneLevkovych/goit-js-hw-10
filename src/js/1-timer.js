@@ -5,10 +5,10 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const dateTimePicker = document.querySelector('#datetime-picker');
 const startButton = document.querySelector('[data-start]');
-const daysSpan = document.querySelector('[data-days]');
-const hoursSpan = document.querySelector('[data-hours]');
-const minutesSpan = document.querySelector('[data-minutes]');
-const secondsSpan = document.querySelector('[data-seconds]');
+const daysEl = document.querySelector('[data-days]');
+const hoursEl = document.querySelector('[data-hours]');
+const minutesEl = document.querySelector('[data-minutes]');
+const secondsEl = document.querySelector('[data-seconds]');
 
 // Змінна для збереження обраної дати
 let userSelectedDate = null;
@@ -23,33 +23,31 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    const selectedDate = selectedDates[0];
-    if (selectedDate <= new Date()) {
+    userSelectedDate = selectedDates[0];
+    if (userSelectedDate <= new Date()) {
       startButton.disabled = true;
       iziToast.error({
         title: 'Error',
         message: 'Please choose a date in the future',
       });
     } else {
-      userSelectedDate = selectedDate;
       startButton.disabled = false;
       iziToast.success({ title: 'Success', message: 'Valid date selected!' });
-      // console.log(selectedDate);
     }
   },
 };
 
 flatpickr(dateTimePicker, options);
 
-function addZero(value) {
+function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
 
 function updateTimerInterface({ days, hours, minutes, seconds }) {
-  daysSpan.textContent = addZero(days);
-  hoursSpan.textContent = addZero(hours);
-  minutesSpan.textContent = addZero(minutes);
-  secondsSpan.textContent = addZero(seconds);
+  daysEl.textContent = addLeadingZero(days);
+  hoursEl.textContent = addLeadingZero(hours);
+  minutesEl.textContent = addLeadingZero(minutes);
+  secondsEl.textContent = addLeadingZero(seconds);
 }
 
 function convertMs(ms) {
@@ -67,8 +65,6 @@ function convertMs(ms) {
 }
 
 startButton.addEventListener('click', () => {
-  if (!userSelectedDate) return;
-
   startButton.disabled = true;
   dateTimePicker.disabled = true;
 
