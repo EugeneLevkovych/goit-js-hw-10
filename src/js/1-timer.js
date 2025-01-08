@@ -14,6 +14,8 @@ const secondsSpan = document.querySelector('[data-seconds]');
 let userSelectedDate = null;
 let timerInterval = null;
 
+startButton.disabled = true;
+
 // Flatpickr
 const options = {
   enableTime: true,
@@ -23,26 +25,26 @@ const options = {
   onClose(selectedDates) {
     const selectedDate = selectedDates[0];
     if (selectedDate <= new Date()) {
+      startButton.disabled = true;
       iziToast.error({
         title: 'Error',
         message: 'Please choose a date in the future',
       });
-      startButton.disabled = true;
     } else {
       userSelectedDate = selectedDate;
       startButton.disabled = false;
+      iziToast.success({ title: 'Success', message: 'Valid date selected!' });
+      // console.log(selectedDate);
     }
   },
 };
 
-// Ініціалізація Flatpickr
 flatpickr(dateTimePicker, options);
 
 function addZero(value) {
   return String(value).padStart(2, '0');
 }
 
-// Функція для оновлення інтерфейсу таймера
 function updateTimerInterface({ days, hours, minutes, seconds }) {
   daysSpan.textContent = addZero(days);
   hoursSpan.textContent = addZero(hours);
@@ -50,7 +52,6 @@ function updateTimerInterface({ days, hours, minutes, seconds }) {
   secondsSpan.textContent = addZero(seconds);
 }
 
-// Функція для конвертації мілісекунд
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
@@ -88,9 +89,8 @@ startButton.addEventListener('click', () => {
   }, 1000);
 });
 
-// Початковий стан кнопки
 startButton.disabled = true;
-console.dir(startButton);
+// console.dir(startButton);
 //--------------------------------REPIN-TIMER----------------------------------------
 // const timer = {
 //   deadLine: new Date('2025-01-09T20:53:00'),
