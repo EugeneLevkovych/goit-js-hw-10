@@ -6,10 +6,10 @@ const form = document.querySelector('.form');
 form.addEventListener('submit', event => {
   event.preventDefault();
 
-  const formData = new FormData(form);
-  const delay = Number(formData.get('delay'));
-  const state = formData.get('state');
+  const delay = parseInt(form.elements.delay.value);
+  const state = form.elements.state.value;
 
+  console.dir(form);
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (state === 'fulfilled') {

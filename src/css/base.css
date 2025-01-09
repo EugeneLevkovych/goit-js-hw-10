@@ -30,3 +30,6 @@ main {
 main:has(.back-link) {
   text-align: center;
 }
+.main-title {
+  margin-bottom: 30px;
+}
